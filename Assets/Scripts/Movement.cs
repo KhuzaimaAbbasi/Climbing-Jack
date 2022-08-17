@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+
+    
     // Start is called before the first frame update
     public float Left = 0.0f;
 
@@ -64,11 +66,11 @@ public class Movement : MonoBehaviour
 
 
 
+        
+            _sequence1.Kill();
 
-        _sequence1.Kill();
 
-       
-            Vector3 New_position = new Vector3(gameObject.transform.position.x +10, gameObject.transform.position.y, gameObject.transform.position.z);
+            Vector3 New_position = new Vector3(gameObject.transform.position.x + 10, gameObject.transform.position.y, gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
@@ -80,34 +82,34 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void Update()
+    public void ClickJumpRight()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+
+        if (this.gameObject.transform.position.x == Left | this.gameObject.transform.position.x == Center)
         {
+            RightJumping();
 
-            if (this.gameObject.transform.position.x == Left | this.gameObject.transform.position.x ==  Center)
-            {
-             RightJumping();
-            
-            }
-                
-
-            
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+    }
+
+
+    public void ClickJumpLeft()
+    {
+
+        if (this.gameObject.transform.position.x == Right | this.gameObject.transform.position.x == Center)
         {
-
-            if (this.gameObject.transform.position.x == Right | this.gameObject.transform.position.x == Center)
-            {
-                LeftJumping();
-
-
-
-            }
-
+            LeftJumping();
 
         }
+
+    }
+
+    public void Update()
+    {
+        
+
+     
 
 
 
