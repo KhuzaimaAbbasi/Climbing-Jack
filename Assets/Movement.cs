@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,89 +6,106 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
+    public float Left = 0.0f;
 
-    public float velocity = 1.0f;
-
-    public float jumping_power_left = 0.3f;
-
-    public float jumping_power_right = 0.3f;
+    public float Right = 0.0f;
     
+    [SerializeField] private Transform _EndPoint;
 
+    private Sequence _sequence1;
 
-    public float Obj_right = 0;
-    public float Obj_left = 0;
-
-    //hello there
-   
-
-    public Rigidbody rb;
-    void Start()
+    private void Start()
     {
-        
+        Climbing();
+    }
 
+    private void Climbing()
+    {
 
+        _sequence1.Kill();
+
+        Vector3 New_position = new Vector3(this.gameObject.transform.position.x, _EndPoint.position.y,this. gameObject.transform.position.z);
+
+        transform.position = this.gameObject.transform.position;
+
+        _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 10.0f));
+
+     
 
     }
 
-    private void Awake()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    private void RightJumping()
     {
 
 
-        climb();
 
 
-        if (this.gameObject.transform.position.x == Obj_right)
+        _sequence1.Kill();
+
+        if (this.gameObject.transform.position.x != Right)
         {
-            rb.velocity = Vector3.zero;
+            Vector3 New_position = new Vector3(Right, gameObject.transform.position.y, gameObject.transform.position.z);
 
-            climb();
-          
-            if (Input.GetKeyDown(KeyCode.A))
+            transform.position = this.gameObject.transform.position;
 
-            {
+            _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f)).AppendCallback(Climbing);
+
+        }
+
+      
+      
+    }
 
 
-                rb.AddForce(new Vector3(jumping_power_left, 0,0), ForceMode.Impulse);
+    private void LeftJumping()
+    {
 
 
-            }
+
+
+        _sequence1.Kill();
+
+        if (this.gameObject.transform.position.x != Left)
+        {
+            Vector3 New_position = new Vector3(Left, gameObject.transform.position.y, gameObject.transform.position.z);
+
+            transform.position = this.gameObject.transform.position;
+
+            _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f)).AppendCallback(Climbing);
+
+        }
+
+
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            
+            
+                RightJumping();
+            
+
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+
+
+            LeftJumping();
+
 
 
         }
 
-        if (this.gameObject.transform.position.x == Obj_left)
-        {
-
-            rb.velocity = Vector3.zero;
-
-            climb();
-            if (Input.GetKeyDown(KeyCode.D))
-
-            {
-
-                rb.AddForce(new Vector3(jumping_power_left, 0, 0), ForceMode.Impulse);
 
 
 
-
-            }
-
-
-
-        }
-    }
-
-    public void climb()
-    {
-
-        rb.AddForce(new Vector3(0, velocity, 0), ForceMode.Force);
 
 
     }
+
 }
