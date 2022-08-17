@@ -85,7 +85,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
 
-            if (this.gameObject.transform.position.x != Right)
+            if (this.gameObject.transform.position.x == Left | this.gameObject.transform.position.x ==  Center)
             {
              RightJumping();
             
@@ -98,7 +98,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
 
-            if (this.gameObject.transform.position.x != Left)
+            if (this.gameObject.transform.position.x == Right | this.gameObject.transform.position.x == Center)
             {
                 LeftJumping();
 
