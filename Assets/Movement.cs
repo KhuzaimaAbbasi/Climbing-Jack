@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     public float Left = 0.0f;
 
     public float Right = 0.0f;
+
+    public float Center = 0.0f;
     
     [SerializeField] private Transform _EndPoint;
 
@@ -42,15 +44,15 @@ public class Movement : MonoBehaviour
 
         _sequence1.Kill();
 
-        if (this.gameObject.transform.position.x != Right)
-        {
-            Vector3 New_position = new Vector3(Right, gameObject.transform.position.y, gameObject.transform.position.z);
+        
+        
+            Vector3 New_position = new Vector3(gameObject.transform.position.x-10, gameObject.transform.position.y, gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
             _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f)).AppendCallback(Climbing);
 
-        }
+        
 
       
       
@@ -65,15 +67,14 @@ public class Movement : MonoBehaviour
 
         _sequence1.Kill();
 
-        if (this.gameObject.transform.position.x != Left)
-        {
-            Vector3 New_position = new Vector3(Left, gameObject.transform.position.y, gameObject.transform.position.z);
+       
+            Vector3 New_position = new Vector3(gameObject.transform.position.x +10, gameObject.transform.position.y, gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
             _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f)).AppendCallback(Climbing);
 
-        }
+        
 
 
 
@@ -83,10 +84,13 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
+
+            if (this.gameObject.transform.position.x != Right)
+            {
+             RightJumping();
             
-            
-                RightJumping();
-            
+            }
+                
 
             
         }
@@ -94,15 +98,16 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
 
+            if (this.gameObject.transform.position.x != Left)
+            {
+                LeftJumping();
 
-            LeftJumping();
 
+
+            }
 
 
         }
-
-
-
 
 
 
