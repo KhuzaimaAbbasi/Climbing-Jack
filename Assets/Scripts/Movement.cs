@@ -6,7 +6,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-
     [SerializeField] private Animator _animator;
    
     private Character_Animation_Controller _animationcontroller;
@@ -30,6 +29,9 @@ public class Movement : MonoBehaviour
         _animationcontroller = new Character_Animation_Controller(_animator);
 
         
+     
+
+        Climbing();
         
     }
 
@@ -62,7 +64,7 @@ public class Movement : MonoBehaviour
 
             transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 1.5f)).AppendCallback(Climbing);
+            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
 
         
 
@@ -84,7 +86,7 @@ public class Movement : MonoBehaviour
 
             transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 1.5f)).AppendCallback(Climbing);
+            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
 
         
 
@@ -92,7 +94,7 @@ public class Movement : MonoBehaviour
 
     }
 
-    private void ClickJumpRight()
+    public void ClickJumpRight()
     {
 
         if (this.gameObject.transform.position.x <= Left+1 && this.gameObject.transform.position.x >= Left  -1 | this.gameObject.transform.position.x <= Center+1 && this.gameObject.transform.position.x >= Center-1)
@@ -104,7 +106,7 @@ public class Movement : MonoBehaviour
     }
 
 
-    private void ClickJumpLeft()
+    public void ClickJumpLeft()
     {
 
         if (this.gameObject.transform.position.x<=Right+1 | this.gameObject.transform.position.x >= Center-1 &&this.gameObject.transform.position.x <= Center+1 | this.gameObject.transform.position.x >= Center - 1)
@@ -117,24 +119,10 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-      {
-            ClickJumpLeft();
-        }
+      
+        
 
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-
-            ClickJumpRight();
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Climbing();
-            
-
-        }
+        
 
     }
     private void PlayJumpAnimation() => _animationcontroller.PlayAnimation(Types.Jump);
