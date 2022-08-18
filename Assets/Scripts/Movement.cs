@@ -6,7 +6,14 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    
+
+    [SerializeField] private Animator _animator;
+   
+    private Character_Animation_Controller _animationcontroller;
+
+  
+   
+
     // Start is called before the first frame update
     public float Left = 0.0f;
 
@@ -20,7 +27,10 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        Climbing();
+        _animationcontroller = new Character_Animation_Controller(_animator);
+
+        
+        
     }
 
     private void Climbing()
@@ -32,7 +42,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 10.0f));
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 10.0f));
 
      
 
@@ -48,11 +58,11 @@ public class Movement : MonoBehaviour
 
         
         
-            Vector3 New_position = new Vector3(gameObject.transform.position.x-10, gameObject.transform.position.y, gameObject.transform.position.z);
+            Vector3 New_position = new Vector3(gameObject.transform.position.x-10, gameObject.transform.position.y+7, gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f)).AppendCallback(Climbing);
+            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 1.5f)).AppendCallback(Climbing);
 
         
 
@@ -70,11 +80,11 @@ public class Movement : MonoBehaviour
             _sequence1.Kill();
 
 
-            Vector3 New_position = new Vector3(gameObject.transform.position.x + 10, gameObject.transform.position.y, gameObject.transform.position.z);
+            Vector3 New_position = new Vector3(gameObject.transform.position.x + 10, gameObject.transform.position.y+7, gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f)).AppendCallback(Climbing);
+            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 1.5f)).AppendCallback(Climbing);
 
         
 
@@ -82,10 +92,10 @@ public class Movement : MonoBehaviour
 
     }
 
-    public void ClickJumpRight()
+    private void ClickJumpRight()
     {
 
-        if (this.gameObject.transform.position.x == Left | this.gameObject.transform.position.x == Center)
+        if (this.gameObject.transform.position.x <= Left+1 && this.gameObject.transform.position.x >= Left  -1 | this.gameObject.transform.position.x <= Center+1 && this.gameObject.transform.position.x >= Center-1)
         {
             RightJumping();
 
@@ -94,10 +104,10 @@ public class Movement : MonoBehaviour
     }
 
 
-    public void ClickJumpLeft()
+    private void ClickJumpLeft()
     {
 
-        if (this.gameObject.transform.position.x == Right | this.gameObject.transform.position.x == Center)
+        if (this.gameObject.transform.position.x<=Right+1 | this.gameObject.transform.position.x >= Center-1 &&this.gameObject.transform.position.x <= Center+1 | this.gameObject.transform.position.x >= Center - 1)
         {
             LeftJumping();
 
@@ -105,14 +115,28 @@ public class Movement : MonoBehaviour
 
     }
 
-    public void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.A))
+      {
+            ClickJumpLeft();
+        }
 
-     
+        if(Input.GetKeyDown(KeyCode.D))
+        {
 
+            ClickJumpRight();
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Climbing();
+            
+
+        }
 
     }
-
+    private void PlayJumpAnimation() => _animationcontroller.PlayAnimation(Types.Jump);
+    private void PlayClimbAnimation() => _animationcontroller.PlayAnimation(Types.Climb);
 }
