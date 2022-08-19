@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
         
      
 
-        Climbing();
+        
         
     }
 
@@ -97,7 +97,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpRight()
     {
 
-        if (this.gameObject.transform.position.x <= Left+1 && this.gameObject.transform.position.x >= Left  -1 | this.gameObject.transform.position.x <= Center+1 && this.gameObject.transform.position.x >= Center-1)
+        if (this.gameObject.transform.position.x < Left+1 && this.gameObject.transform.position.x > Left  -1 | this.gameObject.transform.position.x < Center+1 && this.gameObject.transform.position.x > Center-1)
         {
             RightJumping();
 
@@ -109,7 +109,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpLeft()
     {
 
-        if (this.gameObject.transform.position.x<=Right+1 | this.gameObject.transform.position.x >= Center-1 &&this.gameObject.transform.position.x <= Center+1 | this.gameObject.transform.position.x >= Center - 1)
+        if (this.gameObject.transform.position.x > Right - 1 &&  this.gameObject.transform.position.x < Right+ 1  |  this.gameObject.transform.position.x > Center - 1 && this.gameObject.transform.position.x < Center + 1)
         {
             LeftJumping();
 
@@ -117,6 +117,11 @@ public class Movement : MonoBehaviour
 
     }
 
+    public void ClickClimb()
+    {
+        Climbing();
+
+    }
     private void Update()
     {
       
