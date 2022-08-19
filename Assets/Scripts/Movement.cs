@@ -10,16 +10,17 @@ public class Movement : MonoBehaviour
    
     private Character_Animation_Controller _animationcontroller;
 
-  
-   
+
+
 
     // Start is called before the first frame update
     public float Left = 0.0f;
 
     public float Right = 0.0f;
 
-    public float Center = 0.0f;
-    
+     public float Center = 0.0f;
+
+
     [SerializeField] private Transform _EndPoint;
 
     private Sequence _sequence1;
@@ -28,7 +29,7 @@ public class Movement : MonoBehaviour
     {
         _animationcontroller = new Character_Animation_Controller(_animator);
 
-        
+        Climbing();
      
 
         
@@ -60,7 +61,7 @@ public class Movement : MonoBehaviour
 
         
         
-            Vector3 New_position = new Vector3(gameObject.transform.position.x-10, gameObject.transform.position.y+7, gameObject.transform.position.z);
+            Vector3 New_position = new Vector3(gameObject.transform.position.x-17, gameObject.transform.position.y+12, gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
@@ -82,7 +83,7 @@ public class Movement : MonoBehaviour
             _sequence1.Kill();
 
 
-            Vector3 New_position = new Vector3(gameObject.transform.position.x + 10, gameObject.transform.position.y+7, gameObject.transform.position.z);
+            Vector3 New_position = new Vector3(gameObject.transform.position.x + 17, gameObject.transform.position.y+12, gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
@@ -97,7 +98,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpRight()
     {
 
-        if (this.gameObject.transform.position.x < Left+1 && this.gameObject.transform.position.x > Left  -1 | this.gameObject.transform.position.x < Center+1 && this.gameObject.transform.position.x > Center-1)
+        if (this.gameObject.transform.position.x < Left+6 && this.gameObject.transform.position.x > Left - 6 | this.gameObject.transform.position.x < Center+4 && this.gameObject.transform.position.x > Center - 4)
         {
             RightJumping();
 
@@ -109,7 +110,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpLeft()
     {
 
-        if (this.gameObject.transform.position.x > Right - 1 &&  this.gameObject.transform.position.x < Right+ 1  |  this.gameObject.transform.position.x > Center - 1 && this.gameObject.transform.position.x < Center + 1)
+        if (this.gameObject.transform.position.x > Right-4 && this.gameObject.transform.position.x < Right+4  |  this.gameObject.transform.position.x > Center-4  && this.gameObject.transform.position.x < Center+4)
         {
             LeftJumping();
 
