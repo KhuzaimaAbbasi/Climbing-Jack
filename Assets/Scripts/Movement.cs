@@ -2,14 +2,19 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
 
     [SerializeField] private Animator _animator;
-   
-    private Character_Animation_Controller _animationcontroller;
 
+
+    [SerializeField]
+
+    private float Delay_before=0;
+    private Character_Animation_Controller _animationcontroller;
+    
 
 
 
@@ -45,7 +50,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 10.0f));
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 20.0f));
 
      
 
@@ -129,6 +134,44 @@ public class Movement : MonoBehaviour
         
 
         
+
+    }
+
+    const string Obstacle_Tag = "Obstacle";
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        _sequence1.Kill();
+
+        if (collision.gameObject.CompareTag(Obstacle_Tag))
+        {
+
+            
+
+
+
+            Vector3 New_position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y-10, this.gameObject.transform.position.z);
+
+            transform.position = this.gameObject.transform.position;
+
+            _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f));
+
+            
+
+            Invoke("Load_Scene",1.2f);
+
+
+
+        }
+
+
+    }
+
+     private void Load_Scene()
+    {
+
+        SceneManager.LoadScene("Game_Over_Scene");
+
 
     }
     private void PlayJumpAnimation() => _animationcontroller.PlayAnimation(Types.Jump);
