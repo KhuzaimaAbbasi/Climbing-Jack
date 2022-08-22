@@ -12,10 +12,49 @@ public class Movement : MonoBehaviour
 
     [SerializeField]
 
-    private float Delay_before=0;
+    private float Delay_before = 0;
     private Character_Animation_Controller _animationcontroller;
-    
 
+    /*if(Input.GetMouseButtonDown(0))
+        {
+            if (Input.mousePosition.x<Screen.width/2)
+            {
+                //Move Player Left
+            }
+            else if (Input.mousePosition.x > Screen.width / 2)
+{
+   //Move Player Right
+}
+        }
+        else
+{
+   //Do nothing for now
+}*/
+
+
+    /*if (Input.touchCount > 0)
+     {
+         Touch touch = Input.GetTouch(0);
+
+
+
+         if (touch.position.x < Screen.width / 2)
+         {
+             ClickJumpLeft();
+
+
+         }
+
+
+         else if (touch.position.x > Screen.width / 2)
+         {
+             ClickJumpRight();
+
+
+         }
+
+
+}*/
 
 
     // Start is called before the first frame update
@@ -23,7 +62,7 @@ public class Movement : MonoBehaviour
 
     public float Right = 0.0f;
 
-     public float Center = 0.0f;
+    public float Center = 0.0f;
 
 
     [SerializeField] private Transform _EndPoint;
@@ -35,10 +74,10 @@ public class Movement : MonoBehaviour
         _animationcontroller = new Character_Animation_Controller(_animator);
 
         Climbing();
-     
 
-        
-        
+
+
+
     }
 
     private void Climbing()
@@ -46,13 +85,13 @@ public class Movement : MonoBehaviour
 
         _sequence1.Kill();
 
-        Vector3 New_position = new Vector3(this.gameObject.transform.position.x, _EndPoint.position.y,this. gameObject.transform.position.z);
+        Vector3 New_position = new Vector3(this.gameObject.transform.position.x, _EndPoint.position.y, this.gameObject.transform.position.z);
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 20.0f));
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 30.0f));
 
-     
+
 
     }
 
@@ -64,18 +103,18 @@ public class Movement : MonoBehaviour
 
         _sequence1.Kill();
 
-        
-        
-            Vector3 New_position = new Vector3(gameObject.transform.position.x-17, gameObject.transform.position.y+12, gameObject.transform.position.z);
 
-            transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        Vector3 New_position = new Vector3(gameObject.transform.position.x - 85, gameObject.transform.position.y + 22, gameObject.transform.position.z);
 
-        
+        transform.position = this.gameObject.transform.position;
 
-      
-      
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+
+
+
+
+
     }
 
 
@@ -84,17 +123,17 @@ public class Movement : MonoBehaviour
 
 
 
-        
-            _sequence1.Kill();
+
+        _sequence1.Kill();
 
 
-            Vector3 New_position = new Vector3(gameObject.transform.position.x + 17, gameObject.transform.position.y+12, gameObject.transform.position.z);
+        Vector3 New_position = new Vector3(gameObject.transform.position.x + 85, gameObject.transform.position.y + 22, gameObject.transform.position.z);
 
-            transform.position = this.gameObject.transform.position;
+        transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
 
-        
+
 
 
 
@@ -103,7 +142,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpRight()
     {
 
-        if (this.gameObject.transform.position.x < Left+6 && this.gameObject.transform.position.x > Left - 6 | this.gameObject.transform.position.x < Center+4 && this.gameObject.transform.position.x > Center - 4)
+        if (this.gameObject.transform.position.x < Left + 1 && this.gameObject.transform.position.x > Left - 1 | this.gameObject.transform.position.x < Center + 1 && this.gameObject.transform.position.x > Center - 1)
         {
             RightJumping();
 
@@ -115,7 +154,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpLeft()
     {
 
-        if (this.gameObject.transform.position.x > Right-4 && this.gameObject.transform.position.x < Right+4  |  this.gameObject.transform.position.x > Center-4  && this.gameObject.transform.position.x < Center+4)
+        if (this.gameObject.transform.position.x > Right - 1 && this.gameObject.transform.position.x < Right + 1 | this.gameObject.transform.position.x > Center - 1 && this.gameObject.transform.position.x < Center + 1)
         {
             LeftJumping();
 
@@ -130,14 +169,41 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
-      
-        
 
-        
+
+        if (Input.touchCount > 0)
+       {
+           Touch touch = Input.GetTouch(0);
+
+
+
+           if (touch.position.x < Screen.width / 2)
+           {
+               ClickJumpLeft();
+
+
+           }
+
+
+           else if (touch.position.x > Screen.width / 2)
+           {
+               ClickJumpRight();
+
+
+           }
+
+
+  }
 
     }
 
+
+
+
+
     const string Obstacle_Tag = "Obstacle";
+
+    const string Cloud_Tag = "Cloud";
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -158,9 +224,16 @@ public class Movement : MonoBehaviour
 
             
 
-            Invoke("Load_Scene",1.2f);
+            Invoke("Load_Scene",1.7f);
 
 
+
+        }
+
+       else if (collision.gameObject.CompareTag(Cloud_Tag))
+            {
+
+            Load_Scene();
 
         }
 
@@ -176,4 +249,6 @@ public class Movement : MonoBehaviour
     }
     private void PlayJumpAnimation() => _animationcontroller.PlayAnimation(Types.Jump);
     private void PlayClimbAnimation() => _animationcontroller.PlayAnimation(Types.Climb);
+
+    
 }

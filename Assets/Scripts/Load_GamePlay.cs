@@ -8,7 +8,7 @@ public class Load_GamePlay : MonoBehaviour
     // Start is called before the first frame update
     public void Load()
     {
-        SceneManager.LoadScene("Gameplay_Scene");
+        SceneManager.LoadScene("Test");
 
 
     }
