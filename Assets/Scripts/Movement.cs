@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField]
 
-    private float Delay_before = 0;
+
     private Character_Animation_Controller _animationcontroller;
 
     /*if(Input.GetMouseButtonDown(0))
@@ -105,7 +105,7 @@ public class Movement : MonoBehaviour
 
 
 
-        Vector3 New_position = new Vector3(gameObject.transform.position.x - 85, gameObject.transform.position.y + 22, gameObject.transform.position.z);
+        Vector3 New_position = new Vector3(gameObject.transform.position.x - 85, gameObject.transform.position.y+22 ,gameObject.transform.position.z);
 
         transform.position = this.gameObject.transform.position;
 
@@ -127,7 +127,7 @@ public class Movement : MonoBehaviour
         _sequence1.Kill();
 
 
-        Vector3 New_position = new Vector3(gameObject.transform.position.x + 85, gameObject.transform.position.y + 22, gameObject.transform.position.z);
+        Vector3 New_position = new Vector3(gameObject.transform.position.x + 85, gameObject.transform.position.y+22 , gameObject.transform.position.z);
 
         transform.position = this.gameObject.transform.position;
 
