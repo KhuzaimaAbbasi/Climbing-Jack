@@ -109,7 +109,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
 
 
 
@@ -131,7 +131,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
 
 
 
@@ -142,7 +142,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpRight()
     {
 
-        if (this.gameObject.transform.position.x < Left + 1 && this.gameObject.transform.position.x > Left - 1 | this.gameObject.transform.position.x < Center + 1 && this.gameObject.transform.position.x > Center - 1)
+        if (this.gameObject.transform.position.x < Left + 2 && this.gameObject.transform.position.x > Left - 2 | this.gameObject.transform.position.x < Center + 2 && this.gameObject.transform.position.x > Center - 2)
         {
             RightJumping();
 
@@ -154,7 +154,7 @@ public class Movement : MonoBehaviour
     public void ClickJumpLeft()
     {
 
-        if (this.gameObject.transform.position.x > Right - 1 && this.gameObject.transform.position.x < Right + 1 | this.gameObject.transform.position.x > Center - 1 && this.gameObject.transform.position.x < Center + 1)
+        if (this.gameObject.transform.position.x > Right - 2 && this.gameObject.transform.position.x < Right + 2 | this.gameObject.transform.position.x > Center - 2 && this.gameObject.transform.position.x < Center + 2)
         {
             LeftJumping();
 
