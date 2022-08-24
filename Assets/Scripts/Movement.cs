@@ -15,24 +15,28 @@ public class Movement : MonoBehaviour
 
     private Character_Animation_Controller _animationcontroller;
 
-    /*if(Input.GetMouseButtonDown(0))
-        {
+   private void CallMouse()
+    { 
+        
+        if(Input.GetMouseButtonDown(0))
+      {  
+            {
             if (Input.mousePosition.x<Screen.width/2)
             {
-                //Move Player Left
-            }
+                ClickJumpLeft();
+}
             else if (Input.mousePosition.x > Screen.width / 2)
 {
-   //Move Player Right
+    ClickJumpRight();
 }
         }
-        else
-{
-   //Do nothing for now
-}*/
 
 
-    /*if (Input.touchCount > 0)
+  }
+       }
+
+    private void CallTouch()
+    { if (Input.touchCount > 0)
      {
          Touch touch = Input.GetTouch(0);
 
@@ -54,8 +58,8 @@ public class Movement : MonoBehaviour
          }
 
 
-}*/
-
+}
+    }
 
     // Start is called before the first frame update
     public float Left = 0.0f;
@@ -171,31 +175,13 @@ public class Movement : MonoBehaviour
     {
 
 
-        if (Input.touchCount > 0)
-       {
-           Touch touch = Input.GetTouch(0);
 
+        CallMouse();
 
-
-           if (touch.position.x < Screen.width / 2)
-           {
-               ClickJumpLeft();
-
-
-           }
-
-
-           else if (touch.position.x > Screen.width / 2)
-           {
-               ClickJumpRight();
-
-
-           }
-
-
-  }
 
     }
+
+
 
 
 
