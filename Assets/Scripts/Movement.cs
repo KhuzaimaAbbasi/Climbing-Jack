@@ -210,7 +210,7 @@ public class Movement : MonoBehaviour
 
             
 
-            Invoke("Load_Scene",1.7f);
+            Invoke("Load_Scene_GameOver",1.7f);
 
 
 
@@ -226,10 +226,21 @@ public class Movement : MonoBehaviour
 
     }
 
-     private void Load_Scene()
+    public string Interlude;
+
+    private void Load_Scene_GameOver()
+    {
+        SceneManager.LoadScene("Game_Over_Scene");
+
+
+
+    }
+    
+    private void Load_Scene()
     {
 
-        SceneManager.LoadScene("Game_Over_Scene");
+
+        SceneManager.LoadScene(Interlude);
 
 
     }
