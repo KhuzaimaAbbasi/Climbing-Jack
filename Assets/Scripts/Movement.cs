@@ -93,7 +93,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 30.0f));
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 35.0f));
 
 
 
