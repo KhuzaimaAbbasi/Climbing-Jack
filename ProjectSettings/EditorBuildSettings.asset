@@ -26,4 +26,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level_3_Interlude.unity
     guid: e55aa433058581849bf382fff40a3df1
+  - enabled: 1
+    path: Assets/Level_4.unity
+    guid: 243af6b2980cfc44fa836505ab96bd9b
+  - enabled: 1
+    path: Assets/Level_5.unity
+    guid: deadd66c4306d5c478cb966a88863fe0
+  - enabled: 1
+    path: Assets/Level_4_Interlude.unity
+    guid: fc70a510376f85c4188aa59805629adb
+  - enabled: 1
+    path: Assets/Level_6_Interlude.unity
+    guid: 92ff9576d11ba7942a37c71f9c43a76e
+  - enabled: 1
+    path: Assets/Level_6.unity
+    guid: 8921071dcc1c4384e84146c87e190b06
+  - enabled: 1
+    path: Assets/Level_5_Interlude.unity
+    guid: 3df25662f17a10f40917863bc656b768
   m_configObjects: {}

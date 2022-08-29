@@ -176,7 +176,7 @@ public class Movement : MonoBehaviour
 
 
 
-        CallMouse();
+        CallTouch();
 
 
     }
