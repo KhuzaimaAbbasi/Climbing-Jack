@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Level_1.unity
     guid: 7c59030cf87c7cd47a933a1209c509c8
   - enabled: 1
-    path: Assets/Level_2.unity
-    guid: 87ba6384016867f4a96bf4bad7f74833
-  - enabled: 1
     path: Assets/Level_1_Interlude.unity
     guid: 30ea6b5e1b3420b4a83a4841e74421ca
   - enabled: 1
@@ -39,8 +36,29 @@ EditorBuildSettings:
     path: Assets/Level_6_Interlude.unity
     guid: 92ff9576d11ba7942a37c71f9c43a76e
   - enabled: 1
+    path: Assets/Level_2.unity
+    guid: 77e033b6f67f8224aa2ab0cb35fa672c
+  - enabled: 1
+    path: Assets/Level_4_Retry.unity
+    guid: 6220dd249db31904da395690ea9cf5e8
+  - enabled: 1
+    path: Assets/Level_1_Retry.unity
+    guid: cc1892af7ecea8441b305acd42b28322
+  - enabled: 1
     path: Assets/Level_6.unity
     guid: 8921071dcc1c4384e84146c87e190b06
+  - enabled: 1
+    path: Assets/Level_5_Retry.unity
+    guid: e20f2f8d88253a9458f5ab1c68ccddb5
+  - enabled: 1
+    path: Assets/Level_2_Retry.unity
+    guid: bad512c7a2d1d1a47a1cfb3f03e5fed3
+  - enabled: 1
+    path: Assets/Level_6_Retry.unity
+    guid: af0b80411174e9640b48365914fc499e
+  - enabled: 1
+    path: Assets/Level_3_Retry.unity
+    guid: f399c1d2fe409534c90ca426e1707352
   - enabled: 1
     path: Assets/Level_5_Interlude.unity
     guid: 3df25662f17a10f40917863bc656b768

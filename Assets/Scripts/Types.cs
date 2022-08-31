@@ -5,6 +5,6 @@ using UnityEngine;
 public enum Types
 {
     Jump,
-    Climb
-
+    Climb,
+    Death
 }

@@ -93,9 +93,9 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 35.0f));
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 80.0f));
 
-
+        
 
     }
 
@@ -113,7 +113,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
 
 
 
@@ -135,7 +135,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
 
 
 
@@ -173,10 +173,9 @@ public class Movement : MonoBehaviour
     }
     private void Update()
     {
+        
 
-
-
-        CallTouch();
+        CallMouse();
 
 
     }
@@ -190,6 +189,8 @@ public class Movement : MonoBehaviour
     const string Obstacle_Tag = "Obstacle";
 
     const string Cloud_Tag = "Cloud";
+
+    public string Retry;
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -202,15 +203,15 @@ public class Movement : MonoBehaviour
 
 
 
-            Vector3 New_position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y-10, this.gameObject.transform.position.z);
+            Vector3 New_position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y-300, this.gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().Join(transform.DOMove(New_position, 2.0f));
+            _sequence1 = DOTween.Sequence().AppendCallback(PlayDeathAnimation).Join(transform.DOMove(New_position, 6.0f));
 
             
 
-            Invoke("Load_Scene_GameOver",1.7f);
+            Invoke("Load_Scene_fail",2f);
 
 
 
@@ -244,8 +245,17 @@ public class Movement : MonoBehaviour
 
 
     }
+
+    private void Load_Scene_fail()
+    {
+        SceneManager.LoadScene(Retry);
+
+
+    }
     private void PlayJumpAnimation() => _animationcontroller.PlayAnimation(Types.Jump);
     private void PlayClimbAnimation() => _animationcontroller.PlayAnimation(Types.Climb);
 
-    
+    private void PlayDeathAnimation() => _animationcontroller.PlayAnimation(Types.Death);
+
+
 }
