@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
+    Animation anim;
 
     [SerializeField] private Animator _animator;
 
@@ -16,35 +17,44 @@ public class Movement : MonoBehaviour
     private Character_Animation_Controller _animationcontroller;
 
    private void CallMouse()
-    { 
-        
-        if(Input.GetMouseButtonDown(0))
-      {  
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+           
+
+            
+
+            if (Input.mousePosition.x < Screen.width / 2)
             {
-            if (Input.mousePosition.x<Screen.width/2)
-            {
+
                 ClickJumpLeft();
-}
+            }
             else if (Input.mousePosition.x > Screen.width / 2)
-{
-    ClickJumpRight();
-}
+            {
+                ClickJumpRight();
+            }
+
+            
         }
-
-
-  }
-       }
+    }
 
     private void CallTouch()
-    { if (Input.touchCount > 0)
+
+    { 
+        
+        if (Input.touchCount > 0)
      {
-         Touch touch = Input.GetTouch(0);
+            
 
+            Touch touch = Input.GetTouch(0);
 
+            
 
-         if (touch.position.x < Screen.width / 2)
+            if (touch.position.x < Screen.width / 2)
          {
-             ClickJumpLeft();
+
+                
+                ClickJumpLeft();
 
 
          }
@@ -52,12 +62,14 @@ public class Movement : MonoBehaviour
 
          else if (touch.position.x > Screen.width / 2)
          {
-             ClickJumpRight();
+
+                
+                ClickJumpRight();
 
 
          }
 
-
+            Climbing();
 }
     }
 
@@ -73,72 +85,143 @@ public class Movement : MonoBehaviour
 
     private Sequence _sequence1;
 
+    private Sequence _sequence2;
+
+
+    private Sequence _sequence3;
+
+    public Rigidbody RB;
+
+
     private void Start()
     {
         _animationcontroller = new Character_Animation_Controller(_animator);
 
-        Climbing();
 
-
-
-
-    }
-
-    private void Climbing()
-    {
-
-        _sequence1.Kill();
-
-        Vector3 New_position = new Vector3(this.gameObject.transform.position.x, _EndPoint.position.y, this.gameObject.transform.position.z);
-
-        transform.position = this.gameObject.transform.position;
-
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Join(transform.DOMove(New_position, 80.0f));
 
         
 
+
     }
 
+    public float speed = 0.3f;
+    private void Climbing()
+    {
+
+
+        
+      /* Vector3 New_position = new Vector3(this.gameObject.transform.position.x, _EndPoint.position.y, this.gameObject.transform.position.z);
+
+       transform.position = this.gameObject.transform.position;
+
+         _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Append(transform.DOMove(New_position, 40.0f).SetEase(Ease.Linear));*/
+
+        transform.Translate(Vector3.up * speed);
+
+        PlayClimbAnimation();
+
+        
+    }
+
+    public float jumpspeed = 5f;
     private void RightJumping()
     {
 
 
 
 
-        _sequence1.Kill();
 
 
 
-        Vector3 New_position = new Vector3(gameObject.transform.position.x - 85, gameObject.transform.position.y+22 ,gameObject.transform.position.z);
+
+        Vector3 New_position = new Vector3(gameObject.transform.position.x - 85, gameObject.transform.position.y + 22, gameObject.transform.position.z);
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        _sequence2 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f));
 
 
 
 
 
+
+       /* Vector3 Temp = gameObject.transform.position;
+
+        RB.velocity = new Vector3(-1 * 85, 1 * 22, 0);
+        PlayJumpAnimation();
+
+        if (Temp.x == -35)
+
+
+        {
+            if (gameObject.transform.position.x == -120)
+            {
+                RB.velocity = Vector3.zero;
+                RB.angularVelocity = Vector3.zero;
+            }
+
+        }
+        else if (Temp.x == 50)
+        {
+            if (gameObject.transform.position.x == -35)
+            {
+                RB.angularVelocity = Vector3.zero;
+
+                RB.velocity = Vector3.zero;
+            }
+
+
+        }*/
     }
-
-
     private void LeftJumping()
     {
 
 
 
+        
 
-        _sequence1.Kill();
 
 
         Vector3 New_position = new Vector3(gameObject.transform.position.x + 85, gameObject.transform.position.y+22 , gameObject.transform.position.z);
 
         transform.position = this.gameObject.transform.position;
 
-        _sequence1 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f)).AppendCallback(Climbing);
+        _sequence2 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f));
 
 
 
+
+        
+
+        
+       /* Vector3 Temp = gameObject.transform.position;
+
+        RB.velocity = new Vector3(1 * 85, 1 * 22, 0);
+
+        PlayJumpAnimation();
+
+
+        if (Temp.x == -35)
+
+
+        {
+            if (gameObject.transform.position.x == 50)
+            {
+                RB.velocity = Vector3.zero;
+                RB.angularVelocity = Vector3.zero;
+            }
+
+        }
+        else if (Temp.x == -120)
+        {
+            if (gameObject.transform.position.x == -35)
+            {
+                RB.velocity = Vector3.zero;
+                RB.angularVelocity = Vector3.zero;
+            }
+
+
+        }*/
 
 
     }
@@ -166,24 +249,18 @@ public class Movement : MonoBehaviour
 
     }
 
-    public void ClickClimb()
-    {
-        Climbing();
-
-    }
+   
     private void Update()
     {
+        CallMouse();
+
+
+        Climbing();
+
+
         
 
-        CallTouch();
-
-
     }
-
-
-
-
-
 
 
     const string Obstacle_Tag = "Obstacle";
@@ -194,7 +271,7 @@ public class Movement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        _sequence1.Kill();
+        
 
         if (collision.gameObject.CompareTag(Obstacle_Tag))
         {
@@ -207,7 +284,7 @@ public class Movement : MonoBehaviour
 
             transform.position = this.gameObject.transform.position;
 
-            _sequence1 = DOTween.Sequence().AppendCallback(PlayDeathAnimation).Join(transform.DOMove(New_position, 6.0f));
+            _sequence3 = DOTween.Sequence().AppendCallback(PlayDeathAnimation).Join(transform.DOMove(New_position, 6.0f));
 
             
 
@@ -256,6 +333,8 @@ public class Movement : MonoBehaviour
     private void PlayClimbAnimation() => _animationcontroller.PlayAnimation(Types.Climb);
 
     private void PlayDeathAnimation() => _animationcontroller.PlayAnimation(Types.Death);
+
+    private void PlayGrabAnimation() => _animationcontroller.PlayAnimation(Types.Grab);
 
 
 }

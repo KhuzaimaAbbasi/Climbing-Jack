@@ -9,7 +9,7 @@ public class Character_Animation_Controller : MonoBehaviour
     private static int JumpKey = Animator.StringToHash("Jump");
     private static int ClimbKey = Animator.StringToHash("Climb");
     private static int DeathKey = Animator.StringToHash("Death");
-
+    private static int GrabKey = Animator.StringToHash("Grab");
 
     public Character_Animation_Controller(Animator animator)
     {
@@ -34,7 +34,10 @@ public class Character_Animation_Controller : MonoBehaviour
             case Types.Death:
                 PlayDeath();
                 break;
-         
+            case Types.Grab:
+                PlayGrab();
+                break;
+
 
 
 
@@ -60,6 +63,13 @@ public class Character_Animation_Controller : MonoBehaviour
     {
 
         _animator.SetTrigger(DeathKey);
+
+    }
+
+    private void PlayGrab()
+    {
+
+        _animator.SetTrigger(GrabKey);
 
     }
 

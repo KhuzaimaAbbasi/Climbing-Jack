@@ -6,5 +6,6 @@ public enum Types
 {
     Jump,
     Climb,
-    Death
+    Death,
+    Grab
 }

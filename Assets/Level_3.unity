@@ -769,7 +769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639466943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35, y: 5600, z: 10}
+  m_LocalPosition: {x: -35, y: 3400, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2316,7 +2316,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 1687cb004c071e34ab77e963d9ed3656, type: 2}
     - target: {fileID: 5866666021909216657, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d226e59912d0014fbf2646ed5c4b916, type: 3}
@@ -2348,6 +2348,9 @@ MonoBehaviour:
   Right: -120
   Center: -35
   _EndPoint: {fileID: 639466944}
+  RB: {fileID: 2030237985}
+  speed: 0.3
+  jumpspeed: 5
   Retry: Level_3_Retry
   Interlude: Level_3_Interlude
 --- !u!65 &2030237983

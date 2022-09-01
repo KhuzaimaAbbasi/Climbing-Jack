@@ -1087,7 +1087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895489621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6000, z: -10}
+  m_LocalPosition: {x: 0, y: 3800, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2076,6 +2076,10 @@ PrefabInstance:
       propertyPath: _EndPoint
       value: 
       objectReference: {fileID: 895489622}
+    - target: {fileID: 4040815880141404463, guid: 41f8710fb0836fe4fb184ae7d1dc7cb5, type: 3}
+      propertyPath: jumpspeed
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 7329644515786521065, guid: 41f8710fb0836fe4fb184ae7d1dc7cb5, type: 3}
       propertyPath: m_Name
       value: Jack
