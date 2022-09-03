@@ -3,15 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
+
+
 
 public class Movement : MonoBehaviour
 {
-    Animation anim;
+
+
+    [SerializeField]
+
+    private TMP_Text Score;
+    public int score = 0;
+    Coin_Collecting coins_colecting;
 
     [SerializeField] private Animator _animator;
 
 
-    [SerializeField]
+
 
 
     private Character_Animation_Controller _animationcontroller;
@@ -81,7 +91,7 @@ public class Movement : MonoBehaviour
     public float Center = 0.0f;
 
 
-    [SerializeField] private Transform _EndPoint;
+    //[SerializeField] private Transform _EndPoint;
 
     private Sequence _sequence1;
 
@@ -90,7 +100,7 @@ public class Movement : MonoBehaviour
 
     private Sequence _sequence3;
 
-    public Rigidbody RB;
+
 
 
     private void Start()
@@ -98,8 +108,10 @@ public class Movement : MonoBehaviour
         _animationcontroller = new Character_Animation_Controller(_animator);
 
 
+        coins_colecting = FindObjectOfType<Coin_Collecting>();
+        score = coins_colecting.Current_Score;
+        Score.text = "Coins: "+score + "";
 
-        
 
 
     }
@@ -123,7 +135,7 @@ public class Movement : MonoBehaviour
         
     }
 
-    public float jumpspeed = 5f;
+    
     private void RightJumping()
     {
 
@@ -267,6 +279,8 @@ public class Movement : MonoBehaviour
 
     const string Cloud_Tag = "Cloud";
 
+    const string Coin_Tag = "Coin";
+
     public string Retry;
     private void OnCollisionEnter(Collision collision)
     {
@@ -297,11 +311,27 @@ public class Movement : MonoBehaviour
        else if (collision.gameObject.CompareTag(Cloud_Tag))
             {
 
+            coins_colecting.SetScore(score);
             Load_Scene();
 
         }
 
+       
+    }
 
+
+    public void OnTriggerEnter(Collider Col)
+    {
+        if (Col.gameObject.CompareTag(Coin_Tag))
+        {
+            score++;
+
+            Score.text = "Coins: " + score + "";
+            
+
+
+            Col.gameObject.SetActive(false);
+        }
     }
 
     public string Interlude;
