@@ -117,6 +117,9 @@ public class Movement : MonoBehaviour
     }
 
     public float speed = 0.3f;
+
+
+    public AudioSource ClimbSound;
     private void Climbing()
     {
 
@@ -130,10 +133,16 @@ public class Movement : MonoBehaviour
 
         transform.Translate(Vector3.up * speed);
 
+        
+
         PlayClimbAnimation();
+        ClimbSound.Play();
 
         
+
+
     }
+    public AudioSource Jump;
 
     
     private void RightJumping()
@@ -149,6 +158,8 @@ public class Movement : MonoBehaviour
         Vector3 New_position = new Vector3(gameObject.transform.position.x - 85, gameObject.transform.position.y + 22, gameObject.transform.position.z);
 
         transform.position = this.gameObject.transform.position;
+
+        Jump.Play();
 
         _sequence2 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f));
 
@@ -185,6 +196,8 @@ public class Movement : MonoBehaviour
 
         }*/
     }
+
+    
     private void LeftJumping()
     {
 
@@ -197,6 +210,8 @@ public class Movement : MonoBehaviour
         Vector3 New_position = new Vector3(gameObject.transform.position.x + 85, gameObject.transform.position.y+22 , gameObject.transform.position.z);
 
         transform.position = this.gameObject.transform.position;
+
+        Jump.Play();
 
         _sequence2 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f));
 
@@ -282,6 +297,10 @@ public class Movement : MonoBehaviour
     const string Coin_Tag = "Coin";
 
     public string Retry;
+
+    public AudioSource sounddeath;
+
+    public AudioSource Cloud;
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -298,6 +317,8 @@ public class Movement : MonoBehaviour
 
             transform.position = this.gameObject.transform.position;
 
+            sounddeath.Play();
+
             _sequence3 = DOTween.Sequence().AppendCallback(PlayDeathAnimation).Join(transform.DOMove(New_position, 6.0f));
 
             
@@ -308,17 +329,22 @@ public class Movement : MonoBehaviour
 
         }
 
+        
+
        else if (collision.gameObject.CompareTag(Cloud_Tag))
             {
-
+            
             coins_colecting.SetScore(score);
+            Cloud.Play();
             Load_Scene();
 
         }
 
        
-    }
+    
+}
 
+    public AudioSource sound;
 
     public void OnTriggerEnter(Collider Col)
     {
@@ -327,9 +353,9 @@ public class Movement : MonoBehaviour
             score++;
 
             Score.text = "Coins: " + score + "";
-            
 
 
+            sound.Play();
             Col.gameObject.SetActive(false);
         }
     }
