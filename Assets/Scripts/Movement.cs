@@ -22,8 +22,6 @@ public class Movement : MonoBehaviour
 
 
 
-
-
     private Character_Animation_Controller _animationcontroller;
 
    private void CallMouse()
