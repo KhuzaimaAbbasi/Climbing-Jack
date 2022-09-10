@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 99a400087584f4263b1a8979d6007ad4, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f5dcd562bbe8e6741845a6ba29547444, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.61955523, g: 0.9214276, b: 0.97584206, a: 1}
+  m_IndirectSpecularColor: {r: 0.6730303, g: 0.5183918, b: 0.3465593, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: e86bd60ecef37d040af2d9e7032af0e0, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 33964c6a91345e547bd3bdefdddfcc96, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 4af4ef2c240298844ac689d89a7bb48c, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -408,8 +408,13 @@ MonoBehaviour:
   Right: 0
   Center: 0
   speed: 0
+  ClimbSound: {fileID: 0}
+  Jump: {fileID: 0}
   Retry: 
+  Cloud: {fileID: 0}
+  DeathSound: {fileID: 0}
   Interlude: 
+  coinsound: {fileID: 0}
 --- !u!114 &132154800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,7 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1219,6 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08995176, g: 0.28170934, b: 0.48593175, a: 1}
+  m_IndirectSpecularColor: {r: 0.09007499, g: 0.2817815, b: 0.48599362, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2862,6 +2862,18 @@ PrefabInstance:
     - target: {fileID: 7329644515786521065, guid: 41f8710fb0836fe4fb184ae7d1dc7cb5, type: 3}
       propertyPath: m_Name
       value: Jack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600186160867263678, guid: 41f8710fb0836fe4fb184ae7d1dc7cb5, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600186160867263678, guid: 41f8710fb0836fe4fb184ae7d1dc7cb5, type: 3}
+      propertyPath: m_Center.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600186160867263678, guid: 41f8710fb0836fe4fb184ae7d1dc7cb5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7994998156463448915, guid: 41f8710fb0836fe4fb184ae7d1dc7cb5, type: 3}
       propertyPath: m_RootOrder

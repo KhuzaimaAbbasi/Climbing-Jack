@@ -117,7 +117,7 @@ public class Movement : MonoBehaviour
     public float speed = 0.3f;
 
 
-    public AudioSource ClimbSound;
+   
     private void Climbing()
     {
 
@@ -131,16 +131,16 @@ public class Movement : MonoBehaviour
 
         transform.Translate(Vector3.up * speed);
 
-        
+       
 
         PlayClimbAnimation();
-        ClimbSound.Play();
+        
 
         
 
 
     }
-    public AudioSource Jump;
+    
 
     
     private void RightJumping()
@@ -157,7 +157,7 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        Jump.Play();
+        
 
         _sequence2 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f));
 
@@ -209,7 +209,6 @@ public class Movement : MonoBehaviour
 
         transform.position = this.gameObject.transform.position;
 
-        Jump.Play();
 
         _sequence2 = DOTween.Sequence().AppendCallback(PlayJumpAnimation).Join(transform.DOMove(New_position, 0.5f));
 
@@ -277,7 +276,7 @@ public class Movement : MonoBehaviour
    
     private void Update()
     {
-        CallMouse();
+        CallTouch();
 
 
         Climbing();
@@ -296,9 +295,11 @@ public class Movement : MonoBehaviour
 
     public string Retry;
 
-    public AudioSource sounddeath;
+
 
     public AudioSource Cloud;
+
+    public AudioSource DeathSound;
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -315,7 +316,7 @@ public class Movement : MonoBehaviour
 
             transform.position = this.gameObject.transform.position;
 
-            sounddeath.Play();
+            DeathSound.Play();
 
             _sequence3 = DOTween.Sequence().AppendCallback(PlayDeathAnimation).Join(transform.DOMove(New_position, 6.0f));
 
@@ -342,7 +343,10 @@ public class Movement : MonoBehaviour
     
 }
 
-    public AudioSource sound;
+
+    public string Interlude;
+
+    public AudioSource coinsound;
 
     public void OnTriggerEnter(Collider Col)
     {
@@ -353,12 +357,12 @@ public class Movement : MonoBehaviour
             Score.text = "Coins: " + score + "";
 
 
-            sound.Play();
+            coinsound.Play();
             Col.gameObject.SetActive(false);
+
         }
     }
 
-    public string Interlude;
 
     private void Load_Scene_GameOver()
     {
