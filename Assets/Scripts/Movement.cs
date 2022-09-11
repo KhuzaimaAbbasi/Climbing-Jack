@@ -281,8 +281,9 @@ public class Movement : MonoBehaviour
    
     private void Update()
     {
-        CallMouse();
+        CallTouch();
 
+        CallMouse();
 
         Climbing();
 
@@ -305,6 +306,9 @@ public class Movement : MonoBehaviour
     public AudioSource Cloud;
 
     public AudioSource DeathSound;
+
+
+    public float top;
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -332,14 +336,14 @@ public class Movement : MonoBehaviour
 
         }
 
-        
+       
 
        else if (collision.gameObject.CompareTag(Cloud_Tag))
             {
 
             speed = 0;
 
-            Vector3 Top_position = new Vector3(Center, 1550, this.gameObject.transform.position.z);
+            Vector3 Top_position = new Vector3(Center, top,  this.gameObject.transform.position.z);
 
             transform.position = this.gameObject.transform.position;
 
@@ -347,10 +351,11 @@ public class Movement : MonoBehaviour
 
             
 
-
             coins_colecting.SetScore(score);
+
             Cloud.Play();
-            //Load_Scene();
+            Invoke("Load_Scene", 4f);
+                       //Load_Scene();
 
         }
 
