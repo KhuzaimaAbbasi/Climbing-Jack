@@ -276,7 +276,7 @@ public class Movement : MonoBehaviour
    
     private void Update()
     {
-        CallTouch();
+        CallMouse();
 
 
         Climbing();
