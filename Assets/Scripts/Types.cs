@@ -7,5 +7,5 @@ public enum Types
     Jump,
     Climb,
     Death,
-    Grab
+    Dance
 }

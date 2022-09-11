@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
+ 
+
 
 
     private Character_Animation_Controller _animationcontroller;
@@ -98,6 +100,8 @@ public class Movement : MonoBehaviour
 
     private Sequence _sequence3;
 
+    private Sequence _sequence4;
+
 
 
 
@@ -129,6 +133,7 @@ public class Movement : MonoBehaviour
 
          _sequence1 = DOTween.Sequence().AppendCallback(PlayClimbAnimation).Append(transform.DOMove(New_position, 40.0f).SetEase(Ease.Linear));*/
 
+   
         transform.Translate(Vector3.up * speed);
 
        
@@ -320,7 +325,6 @@ public class Movement : MonoBehaviour
 
             _sequence3 = DOTween.Sequence().AppendCallback(PlayDeathAnimation).Join(transform.DOMove(New_position, 6.0f));
 
-            
 
             Invoke("Load_Scene_fail",2f);
 
@@ -332,10 +336,21 @@ public class Movement : MonoBehaviour
 
        else if (collision.gameObject.CompareTag(Cloud_Tag))
             {
+
+            speed = 0;
+
+            Vector3 Top_position = new Vector3(Center, 1550, this.gameObject.transform.position.z);
+
+            transform.position = this.gameObject.transform.position;
+
+            _sequence4 = DOTween.Sequence().Join(transform.DOMove(Top_position, 0.5f)).Join(transform.DORotate(new Vector3(0, 0,0), 1, RotateMode.FastBeyond360)).AppendCallback(PlayDanceAnimation);
+
             
+
+
             coins_colecting.SetScore(score);
             Cloud.Play();
-            Load_Scene();
+            //Load_Scene();
 
         }
 
@@ -392,7 +407,7 @@ public class Movement : MonoBehaviour
 
     private void PlayDeathAnimation() => _animationcontroller.PlayAnimation(Types.Death);
 
-    private void PlayGrabAnimation() => _animationcontroller.PlayAnimation(Types.Grab);
+    private void PlayDanceAnimation() => _animationcontroller.PlayAnimation(Types.Dance);
 
 
 }
