@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Level_2_Interlude.unity
     guid: fdc56add02faa544fbf6cbb47d57ca55
   - enabled: 1
+    path: Assets/Tutorial.unity
+    guid: 9fb76c9a0c6d610419e9148e6b604582
+  - enabled: 1
     path: Assets/Level_8.unity
     guid: 2f1f1fcf25a494b43bf5b0fb941e2911
   - enabled: 1

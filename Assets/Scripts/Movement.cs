@@ -354,7 +354,7 @@ public class Movement : MonoBehaviour
             coins_colecting.SetScore(score);
 
             Cloud.Play();
-            Invoke("Load_Scene", 4f);
+            Invoke("Load_Scene", 5f);
                        //Load_Scene();
 
         }

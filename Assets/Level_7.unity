@@ -11770,7 +11770,7 @@ MonoBehaviour:
   Left: 50
   Right: -120
   Center: -35
-  speed: 2
+  speed: 3
   Retry: Level_7_Retry
   Cloud: {fileID: 918358950}
   DeathSound: {fileID: 650588139}

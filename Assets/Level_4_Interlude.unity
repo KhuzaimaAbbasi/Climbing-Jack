@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa8389fb7179f64483bf26474d43e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: {fileID: 0}
+  Score: {fileID: 1488304934}
   score: 0
   _animator: {fileID: 0}
   Left: 0
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 211596828}
         m_TargetAssemblyTypeName: Change_Scene, Assembly-CSharp
         m_MethodName: Change_Level
         m_Mode: 1
@@ -954,7 +954,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 211596828}
         m_TargetAssemblyTypeName: Change_Scene, Assembly-CSharp
         m_MethodName: Menu
         m_Mode: 1
