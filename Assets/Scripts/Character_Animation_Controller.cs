@@ -10,6 +10,8 @@ public class Character_Animation_Controller : MonoBehaviour
     private static int ClimbKey = Animator.StringToHash("Climb");
     private static int DeathKey = Animator.StringToHash("Death");
     private static int DanceKey = Animator.StringToHash("Dance");
+    private static int WaveKey = Animator.StringToHash("Wave");
+
 
     public Character_Animation_Controller(Animator animator)
     {
@@ -36,6 +38,9 @@ public class Character_Animation_Controller : MonoBehaviour
                 break;
             case Types.Dance:
                 PlayDance();
+                break;
+            case Types.Wave:
+                PlayWave();
                 break;
 
 
@@ -70,6 +75,13 @@ public class Character_Animation_Controller : MonoBehaviour
     {
 
         _animator.SetTrigger(DanceKey);
+
+    }
+
+    private void PlayWave()
+    {
+
+        _animator.SetTrigger(WaveKey);
 
     }
 

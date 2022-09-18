@@ -112,7 +112,7 @@ public class Movement : MonoBehaviour
 
         coins_colecting = FindObjectOfType<Coin_Collecting>();
         score = coins_colecting.Current_Score;
-        Score.text = "Coins: "+score + "";
+        Score.text = +score + "";
 
 
 
@@ -374,7 +374,7 @@ public class Movement : MonoBehaviour
         {
             score++;
 
-            Score.text = "Coins: " + score + "";
+            Score.text =  + score + "";
 
 
             coinsound.Play();

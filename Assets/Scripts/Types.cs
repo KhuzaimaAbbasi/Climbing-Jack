@@ -7,5 +7,7 @@ public enum Types
     Jump,
     Climb,
     Death,
-    Dance
+    Dance,
+    Wave
+
 }
